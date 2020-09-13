@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Returns a random color
+    function randColor() {
+      return `hsl(${Math.random() * 360}, 100%, 55%)`;
+    }
+
+    // Returns a random integer from min to max
+    function randInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    // Draw a rectangle
+    const myCanvas = document.querySelector('#myCanvas');
+    const canvasWidth = parseInt(myCanvas.width, 10);
+    const canvasHeight = parseInt(myCanvas.height, 10);
+    for (let i=0; i<70; i++) {
+      const width = randInt(50, 150);
+      const height = randInt(50, 150);
+      const x = randInt(0, canvasWidth - width);
+      const y = randInt(0, canvasHeight - height);
+      const lineColor = randColor();
+      const degree = randInt(0, 360);
+      graphicjs.drawRectangle(myCanvas, x, y, width, height, { lineColor, degree });
+    }
+  </script>
+</body>
+</html>

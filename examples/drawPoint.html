@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Returns a random integer from min to max
+    function randInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    // Returns a random color
+    function randColor() {
+      return `hsl(${Math.random() * 360}, 100%, 55%)`;
+    }
+
+    // Draw a dot at the coordinates that the mouse passed
+    const myCanvas = document.querySelector('#myCanvas');
+    myCanvas.addEventListener('mousemove', e => {
+      const radius = randInt(1, 10);
+      const color = randColor();
+      graphicjs.drawPoint(myCanvas, e.offsetX, e.offsetY, { radius, color });
+    });
+  </script>
+</body>
+</html>

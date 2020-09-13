@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Draw the corners of a rectangle
+    const myCanvas = document.querySelector('#myCanvas');
+    const shadowColor = 'white';
+    const shadowBlur = 4;
+    graphicjs.drawRectangleCorners(myCanvas, 40, 40, 150, 100, { lineColor: 'blue', shadowBlur, shadowColor });
+    graphicjs.drawRectangleCorners(myCanvas, 210, 40, 150, 100, { lineColor: 'red', shadowBlur, shadowColor });
+    graphicjs.drawRectangleCorners(myCanvas, 40, 160, 150, 100, { lineColor: 'green', shadowBlur, shadowColor });
+    graphicjs.drawRectangleCorners(myCanvas, 210, 160, 150, 100, { lineColor: 'yellow', shadowBlur, shadowColor });
+  </script>
+</body>
+</html>

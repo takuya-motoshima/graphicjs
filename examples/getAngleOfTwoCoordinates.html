@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    const myCanvas = document.querySelector('#myCanvas');
+    const ctx = myCanvas.getContext('2d');
+    const cx = parseInt(myCanvas.width, 10) / 2;
+    const cy = parseInt(myCanvas.height, 10) / 2;
+
+    // Write the axis
+    graphicjs.drawLine(myCanvas, 0, cy, parseInt(myCanvas.width, 10), cy, { color: 'white', lineWidth: .5 });
+    graphicjs.drawLine(myCanvas, cx, 0, cx, parseInt(myCanvas.height, 10), { color: 'white', lineWidth: .5 });
+
+    // Draw a point at an angle of 45 degrees from the center
+    let x = cx + 50;
+    let y = cy + 50;
+    graphicjs.drawPoint(myCanvas, x, y, { color: 'aqua' });
+    let degree = graphicjs.getAngleBetweenCoordinates(cx, cy, x, y);
+    graphicjs.drawText(myCanvas, degree, x + 10, y - 10, { color: 'aqua' });
+
+    // Draw a point at an angle of 90 degrees from the center
+    x = cx + 0;
+    y = cy + 100;
+    graphicjs.drawPoint(myCanvas, x, y, { color: 'gold' });
+    degree = graphicjs.getAngleBetweenCoordinates(cx, cy, x, y);
+    graphicjs.drawText(myCanvas, degree, x + 10, y - 10, { color: 'gold' });
+
+    // Draw a point at an angle of -135 degrees from the center
+    x = cx - 100;
+    y = cy - 100;
+    graphicjs.drawPoint(myCanvas, x, y, { color: 'lime' });
+    degree = graphicjs.getAngleBetweenCoordinates(cx, cy, x, y);
+    graphicjs.drawText(myCanvas, degree, x + 10, y - 10, { color: 'lime' });
+  </script>
+</body>
+</html>

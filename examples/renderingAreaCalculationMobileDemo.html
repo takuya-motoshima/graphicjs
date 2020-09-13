@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="devices.min.css">
+  <style>
+    body {
+      font-family: x-locale-heading-primary,zillaslab,Palatino,"Palatino Linotype",x-locale-heading-secondary,serif;
+    }
+
+    section .wrap {
+      /*padding: 0;*/
+    }
+
+    .screen {
+      overflow: visible !important;
+    }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: .0625rem solid #d2d2d7;
+        opacity: .7;
+      }
+
+    .outline {
+      box-sizing: border-box;
+      position: fixed;
+      z-index: 4;
+      border: 4px solid rgb(255 165 0);
+      background-color: rgb(255 165 0 / .3);
+      border-radius: .375rem;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="cover" class="silver">
+    <div class="wrap">
+      <h1>Cover</h1>
+      <div class="marvel-device iphone8plus black">
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="volume"></div>
+        <div class="camera"></div>
+        <div class="sensor"></div>
+        <div class="speaker"></div>
+        <div class="screen"><img src="sample.jpg"></div>
+        <div class="home"></div>
+        <div class="bottom-bar"></div>
+      </div>
+    </div>
+    <div class="outline"></div>
+  </section>
+
+  <section id="contain" class="silver">
+    <div class="wrap">
+      <h1>Contain</h1>
+      <div class="marvel-device iphone8plus black">
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="volume"></div>
+        <div class="camera"></div>
+        <div class="sensor"></div>
+        <div class="speaker"></div>
+        <div class="screen"><img src="sample.jpg"></div>
+        <div class="home"></div>
+        <div class="bottom-bar"></div>
+      </div>
+    </div>
+    <div class="outline"></div>
+  </section>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    /**
+     * Resize outline
+     */
+    function resizeOutline() {
+      let screen = document.querySelector('#cover .screen');
+      let outline = document.querySelector('#cover .outline');
+      let rect = screen.getBoundingClientRect();
+      outline.style.width = `${rect.width}px`;
+      outline.style.height = `${rect.height}px`;
+      outline.style.top = `${rect.top}px`;
+      outline.style.left = `${rect.left}px`;
+
+      screen = document.querySelector('#contain img');
+      outline = document.querySelector('#contain .outline');
+      rect = screen.getBoundingClientRect();
+      outline.style.width = `${rect.width}px`;
+      outline.style.height = `${rect.height}px`;
+      outline.style.top = `${rect.top}px`;
+      outline.style.left = `${rect.left}px`;
+    }
+
+    // Fit media
+    graphicjs.fitParent(document.querySelector('#cover img'), document.querySelector('#cover .screen'), 'cover');
+    graphicjs.fitParent(document.querySelector('#contain img'), document.querySelector('#contain .screen'), 'contain');
+
+    // Resize the outline after resizing
+    window.addEventListener('resize', () => resizeOutline());
+    window.addEventListener('scroll', () => resizeOutline());
+
+    // Resize outline
+    resizeOutline();
+  </script>
+</body>
+</html>

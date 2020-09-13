@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      color: #ddd;
+      font-family: x-locale-heading-primary,zillaslab,Palatino,"Palatino Linotype",x-locale-heading-secondary,serif;
+      background-color: black;
+      padding: 0 15px;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+
+      .flex section:nth-child(n+2) {
+        margin-left: 30px;
+      }
+
+        .parent {
+          width: 240px;
+          height: 320px;
+          background-color: #212121;
+        }
+  </style>
+</head>
+<body>
+
+  <div class="flex">
+
+    <section>
+      <h1>Original</h1>
+      <img src="sample.jpg" width="480">
+    </section>
+    
+    <section>
+      <h1>Contain</h1>
+      <div id="parent1" class="parent"><img id="img1" src="sample.jpg"></div>
+    </section>
+
+    <section>
+      <h1>Cover</h1>
+      <div id="parent2" class="parent"><img id="img2" src="sample.jpg"></div>
+    </section>
+
+  </div>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Contain
+    graphicjs.fitParent(document.querySelector('#img1'), document.querySelector('#parent1'), 'contain');
+
+    // Cover
+    graphicjs.fitParent(document.querySelector('#img2'), document.querySelector('#parent2'), 'cover');
+
+  </script>
+</body>
+</html>

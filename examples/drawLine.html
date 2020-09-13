@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Returns a random integer from min to max
+    function randInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    // Returns a random color
+    function randColor() {
+      return `hsl(${Math.random() * 360}, 100%, 55%)`;
+    }
+
+    // Draw sparks
+    function drawSpark() {
+      const rad = Math.PI * 2 / 8;
+      const radius = randInt(4, 40);
+      const x = randInt(radius, parseInt(myCanvas.width, 10) - radius);
+      const y = randInt(radius, parseInt(myCanvas.height, 10) - radius);
+      for (let i=1; i<9; i++) {
+        graphicjs.drawLine(myCanvas,
+          x,
+          y,
+          Math.cos(rad * i) * radius + x,
+          Math.sin(rad * i) * radius + y,
+          { color: randColor() });
+      }
+    }
+
+    //  Draw a line.
+    const myCanvas = document.querySelector('#myCanvas');
+    myCanvas.getContext('2d').globalCompositeOperation = 'lighter';
+    for (let i=0; i<196; i++) drawSpark();
+  </script>
+</body>
+</html>

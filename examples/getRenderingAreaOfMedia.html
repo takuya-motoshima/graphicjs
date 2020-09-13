@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      color: #ddd;
+      font-family: x-locale-heading-primary,zillaslab,Palatino,"Palatino Linotype",x-locale-heading-secondary,serif;
+      background-color: black;
+      padding: 0 15px;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Object fit is cover</h1>
+
+  <section class="flex">
+
+    <section>
+      <h2>Original</h2>
+      <img id="img1" src="sample.jpg" width="240" height="320" style="object-fit: cover;">
+    </section>
+
+    <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="margin: 0 30px"><path fill="#ddd" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>
+
+    <section>
+      <h2>Cropped</h2>
+      <canvas id="canvas1"></canvas>
+    </section>
+
+  </section>
+
+  <h1>Object fit is conain</h1>
+
+  <section class="flex">
+
+    <section>
+      <h2>Original</h2>
+      <img id="img2" src="sample.jpg" width="240" height="320" style="object-fit: contain">
+    </section>
+
+    <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="margin: 0 30px"><path fill="#ddd" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>
+
+    <section>
+      <h2>Cropped</h2>
+      <canvas id="canvas2"></canvas>
+    </section>
+
+  </section>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Draw the visible area of ​​the media whose "object-fit" is "cover" on the canvas.
+    let img = document.querySelector('#img1');
+    let canvas = document.querySelector('#canvas1');
+    let rect = graphicjs.getRenderClientRect(img);
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.getContext('2d').drawImage(img, rect.x, rect.y, rect.width, rect.height, 0, 0, rect.width, rect.height);
+
+    // Draw the visible area of ​​the media whose "object-fit" is "contain" on the canvas.
+    img = document.querySelector('#img2');
+    canvas = document.querySelector('#canvas2');
+    rect = graphicjs.getRenderClientRect(img);
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.getContext('2d').drawImage(img, rect.x, rect.y, rect.width, rect.height, 0, 0, rect.width, rect.height);
+  </script>
+</body>
+</html>

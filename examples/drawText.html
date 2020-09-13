@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    //  Draw a string on the canvas.
+    const myCanvas = document.querySelector('#myCanvas');
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 10, { font: '1em Times New Roman', color: 'orangered' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 31, { font: '1.17em Times New Roman', color: 'coral' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 54, { font: '1.5em Times New Roman', color: 'gold' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 80, { font: '2em Times New Roman', color: 'springgreen' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 113, { font: '3em Times New Roman', color: 'chartreuse' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 157, { font: '4em Times New Roman', color: 'dodgerblue' });
+    graphicjs.drawText(myCanvas, 'GHIBLI', 10, 215, { font: '5em Times New Roman', color: 'fuchsia' });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Returns a random integer from min to max
+    function randInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    // Returns random coordinates
+    function randCoordinates(numberOfCoordinates) {
+      const maxX = parseInt(document.querySelector('#myCanvas').width, 10);
+      const maxY = parseInt(document.querySelector('#myCanvas').height, 10);
+      return [...Array(numberOfCoordinates)].map(_ => ({ x: randInt(1, maxX), y: randInt(1, maxY) }));
+    }
+
+    // Draw multiple points
+    const myCanvas = document.querySelector('#myCanvas');
+    const coordinates = randCoordinates(4);
+    for (let { x, y } of coordinates) graphicjs.drawPoint(myCanvas, x, y, { radius: 2, color: 'cyan' });
+
+    // Draw the center point of multiple points
+    graphicjs.drawCenterPoint(myCanvas, coordinates, { radius: 4, color: 'gold' });
+  </script>
+</body>
+</html>

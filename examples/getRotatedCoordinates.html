@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+  <canvas id="myCanvas" width="400" height="300" style="background: black;"></canvas>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    // Canvas center coordinates
+    const myCanvas = document.querySelector('#myCanvas');
+    const cx = parseInt(myCanvas.width, 10) / 2;
+    const cy = parseInt(myCanvas.height, 10) / 2;
+
+    // Draw a point on the circle with the center of the canvas as the origin.
+    const x = 80;
+    const y = 80;
+    const pointColors = [ 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple' ]
+    for (let i=0; i<pointColors.length; i++) {
+      for (let degree=0; degree<360; degree+=4) {
+        const coordinate = graphicjs.getRotationCoordinate(x + i*3, y + i*3, cx, cy , degree);
+        graphicjs.drawPoint(myCanvas, coordinate.x, coordinate.y, { radius: 2, color: pointColors[i] });
+      }
+    }
+  </script>
+</body>
+</html>
