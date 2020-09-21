@@ -601,4 +601,68 @@ export default class {
     }
     ctx.putImageData(imgData, 0, 0, 0, 0, width, height);
   }
+
+
+  /**
+   * Load the image.
+   * 
+   * @param  {string} path
+   * @return {HTMLImageElement}
+   */
+  public static async loadImage(path: string): Promise<HTMLImageElement> {
+    const img  = new Image();
+    img.setAttribute('src', path);
+    await this.awaitMediaLoaded(img);
+    return img;
+  }
+
+  /**
+   * Crop in a circle.
+   * 
+   * @param {HTMLImageElement|string} media
+   * @param  {number} options.x
+   * @param  {number} options.y
+   * @param  {number} options.size
+   * @param  {string} options.format
+   * @return {HTMLImageElement}
+   */
+  public static async cropCircle(
+    media: HTMLImageElement|string,
+    option?: {
+      x?: number,
+      y?: number,
+      size?: number,
+      format?: 'image/webp'|'image/png'|'image/jpeg' 
+    }
+  ): Promise<HTMLImageElement> {
+    option = Object.assign({
+      x: undefined,
+      y: undefined,
+      size: undefined,
+      format: 'image/png'
+    }, option || {});
+    if (typeof media === 'string') media = await this.loadImage(media);
+    if (!this.isMediaLoaded(media as HTMLImageElement)) await this.awaitMediaLoaded(media as HTMLImageElement);
+    const { width, height } = this.getMediaDimensions(media);
+    const size = Math.min(width, height);
+    let x = option.x || 0;
+    let y = option.y || 0;
+    if (!option.x && width > height) x = width / 2 - height /2;
+    if (!option.y && width < height) y = height / 2 - width /2;
+    const canvas = document.createElement('canvas');
+    canvas.width = option.size || size;
+    canvas.height = option.size || size;
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(media,
+      x, y, size, size,
+      0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.beginPath();
+    ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, Math.PI*2);
+    ctx.closePath();
+    ctx.fill();
+    const img = new Image();
+    img.src = canvas.toDataURL(option.format, 1);
+    return img;
+  }
 }

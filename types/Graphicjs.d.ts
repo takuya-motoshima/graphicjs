@@ -223,4 +223,27 @@ export default class {
      * @return {void}
      */
     static flipHorizontal(canvas: HTMLCanvasElement): void;
+    /**
+     * Load the image.
+     *
+     * @param  {string} path
+     * @return {HTMLImageElement}
+     */
+    static loadImage(path: string): Promise<HTMLImageElement>;
+    /**
+     * Crop in a circle.
+     *
+     * @param {HTMLImageElement|string} media
+     * @param  {number} options.x
+     * @param  {number} options.y
+     * @param  {number} options.size
+     * @param  {string} options.format
+     * @return {HTMLImageElement}
+     */
+    static cropCircle(media: HTMLImageElement | string, option?: {
+        x?: number;
+        y?: number;
+        size?: number;
+        format?: 'image/webp' | 'image/png' | 'image/jpeg';
+    }): Promise<HTMLImageElement>;
 }

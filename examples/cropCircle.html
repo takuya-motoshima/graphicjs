@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      color: #ddd;
+      font-family: x-locale-heading-primary,zillaslab,Palatino,"Palatino Linotype",x-locale-heading-secondary,serif;
+      background-color: black;
+      padding: 0 15px;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Crop in a circle</h1>
+
+  <section class="flex">
+
+    <section>
+      <h2>Original</h2>
+      <img id="originalImg" src="sample.jpg" height="240">
+    </section>
+
+    <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="margin: 0 30px"><path fill="#ddd" d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"></path></svg>
+
+    <section>
+      <h2>Cropped</h2>
+      <canvas id="canvas"></canvas>
+    </section>
+
+  </section>
+
+  <script type="module">
+    import graphicjs from '../dist/build.esm.js';
+
+    (async () => {
+
+      // Get the element
+      const originalImg = document.querySelector('#originalImg');
+      const canvas = document.querySelector('#canvas');
+
+      // Crop
+      const croppedImg = await graphicjs.cropCircle(originalImg, { size: 240 });
+      canvas.width = croppedImg.width;
+      canvas.height = croppedImg.height;
+      canvas.getContext('2d').drawImage(croppedImg, 0, 0);
+    })();
+  </script>
+</body>
+</html>

@@ -498,3 +498,45 @@ graphicjs.flipHorizontal(canvas: HTMLCanvasElement): void
 ###### Parameters
 - __canvas__: HTMLCanvasElement  
     The canvas element to flip.
+
+### cropCircle()  
+Crop in a circle.
+
+###### Syntax
+```js
+async graphicjs.cropCircle(
+  media: HTMLImageElement|string,
+  option?: {
+    x?: number,
+    y?: number,
+    size?: number,
+    format?: 'image/webp'|'image/png'|'image/jpeg' 
+  }
+): Promise<HTMLImageElement>
+```
+
+###### Parameters
+- __media__: HTMLImageElement|string  
+    Image element or image URL to crop in a circle.
+
+- __option__: { x?: number, y?: number, size?: number, format?: 'image/webp'|'image/png'|'image/jpeg' }
+   Crop options  
+    <table>
+        <tr>
+            <td>x</td>
+            <td>The X coordinate of the center of the circle. The default is the center of the image.</td>
+        </tr>
+        <tr>
+            <td>y</td>
+            <td>The Y coordinate of the center of the circle. The default is the center of the image.</td>
+        </tr>
+        <tr>
+            <td>size</td>
+            <td>The diameter of the circle. The default uses the optimal diameter to fit the original image.</td>
+        </tr>
+        <tr>
+            <td>format</td>
+            <td>The format of the cropped image. The default is "image/png".</td>
+        </tr>
+    </table>
+
