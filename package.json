@@ -1,6 +1,6 @@
 {
   "name": "graphicjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a module for manipulating media elements and for graphics processing.",
   "main": "dist/build.common.js",
   "module": "dist/build.esm.js",
