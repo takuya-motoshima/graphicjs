@@ -433,6 +433,18 @@ canvas.height = croppedImg.height;
 canvas.getContext('2d').drawImage(croppedImg, 0, 0);
 ```
 
+### Dimensions of the area where the string is drawn.
+
+```js
+import graphicjs from 'graphicjs';
+
+// Get text dimensions
+graphicjs.getTextDimensions('Hello World');// {width: 56, height: 9}
+
+// Specify the font
+graphicjs.getTextDimensions('Hello World', '14px Arial');// {width: 73, height: 10}
+```
+
 ## License
 
 [MIT licensed](./LICENSE.txt)

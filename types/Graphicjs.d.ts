@@ -246,4 +246,12 @@ export default class {
         size?: number;
         format?: 'image/webp' | 'image/png' | 'image/jpeg';
     }): Promise<HTMLImageElement>;
+    /**
+     * Returns the dimensions of the text.
+     *
+     * @param  {string} text [description]
+     * @param  {string} font [description]
+     * @return {{ width: number, height: number }}
+     */
+    static getTextDimensions(text: string, font?: string): IDimensions;
 }

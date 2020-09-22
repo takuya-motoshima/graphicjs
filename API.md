@@ -510,7 +510,7 @@ async graphicjs.cropCircle(
     x?: number,
     y?: number,
     size?: number,
-    format?: 'image/webp'|'image/png'|'image/jpeg' 
+    format?: 'image/webp'|'image/png'|'image/jpeg'
   }
 ): Promise<HTMLImageElement>
 ```
@@ -540,3 +540,23 @@ async graphicjs.cropCircle(
         </tr>
     </table>
 
+###### Return
+Returns an image element cropped in a circle.
+
+### getTextDimensions()  
+Returns the dimensions of the text.
+
+###### Syntax
+```js
+graphicjs.getTextDimensions(text: string, font?: string): IDimensions
+```
+
+###### Parameters
+- __text__: string  
+    String to get the dimensions.
+
+- __font__: string  
+    String font size and font family.For example, '14px Arial'.
+
+###### Return
+Returns a string height and width object({width: number, height: number}).

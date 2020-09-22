@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2] - 2020-09-22
+
+Added method to calculate text dimensions(graphicjs.getTextDimensions()).  
+
 ## [1.0.1] - 2020-09-21
 
 Added a method to crop the image in a circle.  

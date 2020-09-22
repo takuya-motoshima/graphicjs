@@ -665,4 +665,20 @@ export default class {
     img.src = canvas.toDataURL(option.format, 1);
     return img;
   }
+
+  /**
+   * Returns the dimensions of the text.
+   *
+   * @param  {string} text [description]
+   * @param  {string} font [description]
+   * @return {{ width: number, height: number }}
+   */
+  public static getTextDimensions(text: string, font?: string): IDimensions {
+    const ctx = document.createElement('canvas').getContext('2d')!;
+    if (font) ctx.font = font;
+    const metrics = ctx.measureText(text);
+    const height = Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent);
+    const width = Math.ceil(metrics.width);
+    return { width, height };
+  }
 }
